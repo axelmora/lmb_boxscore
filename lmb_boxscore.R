@@ -5,25 +5,45 @@ library(chron)
 
 LMB2017 = read.csv("LMB2017.csv")
 
-j1 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_03/gid_2017_05_03_camaaa_leoaaa_1/rawboxscore.xml")
-j2 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_03/gid_2017_05_03_mtyaaa_vaqaaa_1/rawboxscore.xml")
-j3 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_03/gid_2017_05_03_mvaaaa_duraaa_1/rawboxscore.xml")
-j4 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_03/gid_2017_05_03_mxoaaa_sltaaa_1/rawboxscore.xml")
-j5 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_03/gid_2017_05_03_oaxaaa_yucaaa_1/rawboxscore.xml")
-j6 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_03/gid_2017_05_03_pueaaa_tabaaa_1/rawboxscore.xml")
-j7 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_03/gid_2017_05_03_tijaaa_aguaaa_1/rawboxscore.xml")
-j8 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_03/gid_2017_05_03_vraaaa_quiaaa_1/rawboxscore.xml")
+mm <- "05"
+dd <- "05"
+aw1 <- "cam"
+ho1 <- "pue"
+aw2 <- "agu"
+ho2 <- "mxo"
+aw3 <- "mva"
+ho3 <- "mty"
+aw4 <- "oax"
+ho4 <- "qui"
+aw5 <- "tab"
+ho5 <- "leo"
+aw6 <- "lag"
+ho6 <- "dur"
+aw7 <- "vra"
+ho7 <- "yuc"
+aw8 <- "slt"
+ho8 <- "tij"
 
-game1 <- box(j1)
-game2 <- box(j2)
-game3 <- box(j3)
-game4 <- box(j4)
-game5 <- box(j5)
-game6 <- box(j6)
-game7 <- box(j7)
-game8 <- box(j8)
+g1 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_",mm,"/day_",dd,"/gid_2017_",mm,"_",dd,"_",aw1,"aaa_",ho1,"aaa_1/rawboxscore.xml")))
+g2 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_",mm,"/day_",dd,"/gid_2017_",mm,"_",dd,"_",aw2,"aaa_",ho2,"aaa_1/rawboxscore.xml")))
+g3 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_",mm,"/day_",dd,"/gid_2017_",mm,"_",dd,"_",aw3,"aaa_",ho3,"aaa_1/rawboxscore.xml")))
+g4 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_",mm,"/day_",dd,"/gid_2017_",mm,"_",dd,"_",aw4,"aaa_",ho4,"aaa_1/rawboxscore.xml")))
+g5 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_",mm,"/day_",dd,"/gid_2017_",mm,"_",dd,"_",aw5,"aaa_",ho5,"aaa_1/rawboxscore.xml")))
+g6 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_",mm,"/day_",dd,"/gid_2017_",mm,"_",dd,"_",aw6,"aaa_",ho6,"aaa_1/rawboxscore.xml")))
+g7 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_",mm,"/day_",dd,"/gid_2017_",mm,"_",dd,"_",aw7,"aaa_",ho7,"aaa_1/rawboxscore.xml")))
+g8 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_",mm,"/day_",dd,"/gid_2017_",mm,"_",dd,"_",aw8,"aaa_",ho8,"aaa_1/rawboxscore.xml")))
 
-LMB2017 <- rbind(LMB2017,game1,game2,game3,game4,game5,game6,game7,game8)
+game1 <- box(g1)
+game2 <- box(g2)
+game3 <- box(g3)
+game4 <- box(g4)
+game5 <- box(g5)
+game6 <- box(g6)
+game7 <- box(g7)
+game8 <- box(g8)
+
+LMB2017 <- rbind(LMB2017,game1,game2,game3,game4,game5,game6,game7)
+write.csv(LMB2017,file="LMB2017.csv")
 
 date <- function(x){
   a <- xml_find_all(x, "/boxscore/@game_id")
@@ -100,9 +120,9 @@ box <- function(x){
   hr <- home_runs(x)
   hh <- home_hits(x)
   
-  if(at == "AGS" || at == "DUR" || at == "SLT" || at == "VAQ" || at == "MXO" || at == "TIJ" || at == "MVA" || at == "MTY"){
+  if(ht == "AGS" || ht == "DUR" || ht == "SLT" || ht == "VAQ" || ht == "MXO" || ht == "TIJ" || ht == "MVA" || ht == "MTY"){
     zone <- "NTE"
-  }else if(at == "CAM" || at == "LEO" || at == "OAX" || at == "PUE" || at == "QUI" || at == "TAB" || at == "VRA" || at == "YUC"){
+  }else if(ht == "CAM" || ht == "LEO" || ht == "OAX" || ht == "PUE" || ht == "QUI" || ht == "TAB" || ht == "VRA" || ht == "YUC"){
     zone <- "SUR"
   }
   game <- data.frame(DATE = date,VISITA=at,LOCAL=ht,ZONA=zone,CV = ar,CL = hr,HV = ah,HL=hh,ATT=att,TIME=tim,OBS="")
