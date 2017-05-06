@@ -55,7 +55,7 @@ g6 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aa
 g7 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_",mm,"/day_",dd,"/gid_2017_",mm,"_",dd,"_",aw7,"aaa_",ho7,"aaa_1/rawboxscore.xml")))
 g8 <- read_xml(gsub(" ","",paste("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_",mm,"/day_",dd,"/gid_2017_",mm,"_",dd,"_",aw8,"aaa_",ho8,"aaa_1/rawboxscore.xml")))
 
-#BOX FUNCTION TO EXTRACT DATA
+#BOX FUNCTION TO EXTRACT DATA WITH XML AND A OBSERVATION
 game1 <- box(g2,"")
 game2 <- box(g2,"")
 game3 <- box(g3,"")
@@ -133,7 +133,7 @@ away_hits <- function(x){
   val <- as.integer(val)
   return(val)
 }
-#ALL TOGHETER IN A DATAFRAME
+#ALL TOGHETER IN A DATAFRAME, OBS IS A CHARACTER MANUAL INPUT
 box <- function(x,obs){
   date <- date(x)
   at <- awayteam(x)
