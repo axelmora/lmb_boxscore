@@ -1,10 +1,9 @@
 library(RCurl)
 library(XML)
-library(XML2)
+library(xml2)
+library(chron)
 
-fname = file.choose()
-LMB_2017 = read.csv(fname)
-
+LMB_2017 = read.csv("LMB2017.csv")
 
 j1 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_02/gid_2017_05_02_camaaa_leoaaa_1/rawboxscore.xml")
 j2 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_02/gid_2017_05_02_mtyaaa_vaqaaa_1/rawboxscore.xml")
@@ -15,7 +14,6 @@ j6 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_
 j7 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_02/gid_2017_05_02_tijaaa_aguaaa_1/rawboxscore.xml")
 j8 <- read_xml("http://www.milb.com/gdcross/components/game/aaa/year_2017/month_05/day_02/gid_2017_05_02_vraaaa_quiaaa_1/rawboxscore.xml")
 
-
 game1 <- box(j1)
 game2 <- box(j2)
 game3 <- box(j3)
@@ -25,7 +23,7 @@ game6 <- box(j6)
 game7 <- box(j7)
 game8 <- box(j8)
 
-LMB_2017 <- rbind(LMB_2017,game1,game2,game3,game4,game5,game6,game7,game8)
+LMB2017 <- rbind(LMB_2017,game1,game2,game3,game4,game5,game6,game7,game8)
 
 date <- function(x){
   a <- xml_find_all(x, "/boxscore/@game_id")
