@@ -25,7 +25,7 @@ tij <- "tij"
 
 #MONTH AND DAY
 mm <- "05"
-dd <- "05"
+dd <- "06"
 
 #ALL GAMES AWAY AND HOME TEAMS ASIGMENT
 aw1 <- cam
@@ -66,7 +66,7 @@ game7 <- box(g7,"")
 game8 <- box(g8,"")
 
 #UPDATE ACTUAL DATAFRAME
-LMB2017 <- rbind(LMB2017,game1,game2,game3,game4,game5,game6,game7)
+LMB2017 <- rbind(LMB2017,game1,game2,game3,game4,game5,game6,game7,game8)
 write.csv(LMB2017,file="LMB2017.csv")
 
 #GET DATE
