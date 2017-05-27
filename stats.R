@@ -1,4 +1,4 @@
-LMB2017xx <- LMB2017
+LMB2017x <- LMB2017
 LMB2017x$DATE <- as.Date(LMB2017x$DATE, "%Y-%m-%d")
 LMB2017x$DATE <- as.character(LMB2017x$DATE)
 summary(LMB2017x)
@@ -10,6 +10,11 @@ LMB2017x_SUR <- sqldf::read.csv.sql("LMB2017x",sql="select * from LMB2017x where
 LMB2017x_NTE <- sqldf::read.csv.sql("LMB2017x",sql="select * from LMB2017x where ZONA = 'NTE'")
 summary(LMB2017x_NTE)
 summary(LMB2017x_SUR)
+
+w_local <- sqldf::read.csv.sql("LMB2017x",sql="select LOCAL, count(LOCAL) from LMB2017x where CL > CV group by LOCAL")
+l_local <- sqldf::read.csv.sql("LMB2017x",sql="select LOCAL, count(LOCAL) from LMB2017x where CL < CV group by LOCAL")
+w_visita <- sqldf::read.csv.sql("LMB2017x",sql="select VISITA, count(VISITA) from LMB2017x where CL < CV group by VISITA")
+l_visita <- sqldf::read.csv.sql("LMB2017x",sql="select VISITA, count(VISITA) from LMB2017x where CL > CV group by VISITA")
 
 avg_time_att <- sqldf::read.csv.sql("LMB2017x",sql="select DATE as date, 
                             avg(TIME) as time, avg(ATT) as att from LMB2017x group by DATE")
