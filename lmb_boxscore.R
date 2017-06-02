@@ -25,29 +25,30 @@ slt <- "slt"
 tij <- "tij"
 
 #MONTH AND DAY
-mm <- "05"
-dd <- "25"
+mm <- "06"
+dd <- "01"
 
 #ALL GAMES AWAY AND HOME TEAMS ASIGMENT
-aw1 <- cam
-ho1 <- dur
-aw2 <- mva
-ho2 <- leo
-aw3 <- oax
-ho3 <- agu
-aw4 <- mty
-ho4 <- pue
-aw5 <- vra
-ho5 <- slt
-aw6 <- mxo
-ho6 <- qui
-aw7 <- tab
-ho7 <- vaq
-aw8 <- tij
-ho8 <- yuc
+aw1 <- dur
+ho1 <- mxo
+aw2 <- qui
+ho2 <- oax
+aw3 <- agu
+ho3 <- mva
+aw4 <- leo
+ho4 <- tab
+aw5 <- pue
+ho5 <- cam
+aw6 <- vaq
+ho6 <- tij
+aw7 <- yuc
+ho7 <- vra
+aw8 <- slt
+ho8 <- mty
 
-aw9 <- mxo
-ho9 <- qui
+aw9 <- yuc
+ho9 <- vra
+
 aw10 <- tij
 ho10 <- yuc
 
@@ -70,15 +71,16 @@ game2 <- box(g2,"")
 game3 <- box(g3,"")
 game4 <- box(g4,"")
 game5 <- box(g5,"")
-game6 <- box(g6,"DJ F/7")
-game7 <- box(g7,"")
-game8 <- box(g8,"DJ F/7")
+game6 <- box(g6,"")
+game7 <- box(g7,"DJ F/9")
+game8 <- box(g8,"")
 
 game9 <- box(g9,"DJ F/7")
+
 game10 <- box(g10,"DJ F/7")
 
 #UPDATE ACTUAL DATAFRAME
-LMB2017 <- rbind(LMB2017,game1,game2,game3,game4,game5,game6,game7,game8,game9,game10)
+LMB2017 <- rbind(LMB2017,game1,game2,game3,game4,game5,game6,game7, game8)
 write.csv(LMB2017,file="LMB2017.csv")
 
 #GET DATE
